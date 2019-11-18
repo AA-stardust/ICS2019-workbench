@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   b = strtoll(argv[optind + 1], NULL, 10);
   printf("%ld\n",b);
   m = strtoll(argv[optind + 2], NULL, 10);
-  printf("ld\n",m);
+  printf("%ld\n",m);
 
   int64_t ret = func(a, b, m);
   printf("%ld\n", ret);
