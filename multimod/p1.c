@@ -2,6 +2,9 @@
 #include<stdio.h>
 _Bool mul_exeed(int64_t a,int64_t b){
   int64_t c=a*b;
+  printf("exeed: c=%ld\n",c);
+  printf("exeed: a=%ld\n",a);
+  printf("exeed: c/b=%ld\n",c/b)
   return !(b==0||a==c/b);
 }
 int64_t add_mod(int64_t a,int64_t b,int64_t m){
