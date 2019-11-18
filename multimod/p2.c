@@ -16,7 +16,7 @@ void print(int a[],int len){
 }
 int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   // TODO: implement
-  int a_bi[63];
+  int a_bi[64];
   int len=sizeof(a_bi)/sizeof(a_bi[0]);
   init(a,a_bi,len);
   print(a_bi,len);
