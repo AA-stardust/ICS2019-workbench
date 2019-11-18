@@ -5,8 +5,8 @@ _Bool mul_exeed(int64_t a,int64_t b){
   return !(b==0||a==c/b);
 }
 int64_t add_mod(int64_t a,int64_t b,int64_t m){
-  u_int64_t a1=a+b;
-  u_int64_t result=a1%(u_int64_t)m;
+  uint64_t a1=a+b;
+  uint64_t result=a1%(uint64_t)m;
   return (int64_t)result;
 }
 
@@ -23,7 +23,7 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   }
   int64_t result=0;
   for(int i=0;i<b1;i++){
-    result=add(result,a1,m);
+    result=add_mod(result,a1,m);
   }
   return result;
 }
