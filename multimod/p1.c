@@ -11,14 +11,10 @@ int64_t add_mod(int64_t a,int64_t b,int64_t m){
 }
 
 int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
-  printf("%ld\n",a);
   int64_t a1=a>b? a:b;
   int64_t b1=a<b? a:b;
-  printf("%ld\n",a1);
   a1=a1%m;
   b1=b1%m;
-  printf("%ld\n",a1);
-  printf("%ld\n",b1);
   if(!mul_exeed(a1,b1)){
     printf("process 1\n");
     return (a1*b1)%m;
