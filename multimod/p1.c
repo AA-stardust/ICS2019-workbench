@@ -25,6 +25,10 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   }
   int64_t result=0;
   for(int i=0;i<b1;i++){
+    if(result<add_mod(result,a1,m)){
+      printf("result: %ld %d\n",result,i);
+      system("pause");
+    }
     result=add_mod(result,a1,m);
     printf("result: %ld %d\n",result,i);
   }
