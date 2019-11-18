@@ -1,11 +1,29 @@
 #include "multimod.h"
 #include<stdio.h>
-_Bool exeed(int64_t a,int64_t b){
+_Bool mul_exeed(int64_t a,int64_t b){
   int64_t c=a*b;
   return !(b==0||a==c/b);
 }
-
+int64_t add_mod(int64_t a,int64_t b,int64_t m){
+  u_int64_t a1=a+b;
+  u_int64_t result=a1%(u_int64_t)m;
+  return (int64_t)result;
+}
 
 int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
-  return 0;
+  int64_t a1=a>b? a:b;
+  int64_t b1=a<b? a:b;
+  a1=a1%m;
+  b1=b1%m;
+  printf("%ld\n",a1);
+  printf("%ld\n",b1);
+  if(!mul_exeed(a1,b1)){
+    printf("1/n");
+    return (a1*b1)%m;
+  }
+  int64_t result=0;
+  for(int i=0;i<b1;i++){
+    result=add(result,a1,m);
+  }
+  return result;
 }
