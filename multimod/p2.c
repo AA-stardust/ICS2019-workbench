@@ -1,10 +1,30 @@
 #include "multimod.h"
 #include<stdio.h>
+int64_t add_mod(int64_t a,int64_t b,int64_t m){
+  uint64_t a1=a+b;
+  uint64_t result=a1%(uint64_t)m;
+  return (int64_t)result;
+}
 void init(int64_t a,int b[],int len){
   int i=0;
   while(i<len){
     b[i]=a%2;
     a/=2;
+    i++;
+  }
+}
+void init_b(int64_t b,int64_t m,int b_m[],int len){
+  int i=0;
+  int64_t result=b;
+  while(i<len){
+    if(i==0){
+      b_m[i]=result%m;
+      result%=m;
+      i++;
+      continue;
+    }
+    result=add_mod(result,result,m);
+    b_m[i]=result;
     i++;
   }
 }
@@ -14,12 +34,20 @@ void print(int a[],int len){
     if((i+1)%5==0)printf("\n");
   }
 }
+void print_b(int64_t b[],int len){
+  for(int i=0;i<len;i++){
+    printf("%d ",b[i]);
+    if((i+1)%5==0)printf("\n");
+  }
+}
 int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   // TODO: implement
   int a_bi[63];
-  int len=sizeof(a_bi)/sizeof(a_bi[0]);
-  init(a,a_bi,len);
-  printf("%lx\n",a);
-  print(a_bi,len);
+  int len1=sizeof(a_bi)/sizeof(a_bi[0]);
+  init(a,a_bi,len1);
+  int64_t b_mod[63];
+  int len2=sizeof(b_mod)/sizeof(b[0]);
+  init_b(b,m,b_mod,len2);
+  print_b(b_mod,len2);
   return -2;
 }
