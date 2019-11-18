@@ -1,7 +1,7 @@
 #include "multimod.h"
 #include<stdio.h>
 _Bool mul_exeed(int64_t a,int64_t b){
-  int64_t c=a*b;
+  volatile int64_t c=a*b;
   printf("exeed: c=%ld\n",c);
   printf("exeed: a=%ld\n",a);
   printf("exeed: b=%ld\n",b);
