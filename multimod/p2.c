@@ -1,4 +1,5 @@
 #include "multimod.h"
+#include<stdio.h>
 void init(int64_t a,int b[],int len){
   int i=0;
   while(i<len){
