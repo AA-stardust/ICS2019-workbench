@@ -21,7 +21,7 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   a1=a1%m;
   b1=b1%m;
   printf("%ld\n",a1-b1);
-  system("pause");
+  assert(0);
   if(!mul_exeed(a1,b1)){
     printf("process 1\n");
     return (a1*b1)%m;
