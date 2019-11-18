@@ -32,7 +32,7 @@ void print(int a[],int len){
 }
 void print_b(int64_t b[],int len){
   for(int i=0;i<len;i++){
-    printf("%d ",b[i]);
+    printf("%ld ",b[i]);
     if((i+1)%5==0)printf("\n");
   }
 }
@@ -44,6 +44,6 @@ int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   int64_t b_mod[63];
   int len2=sizeof(b_mod)/sizeof(b_mod[0]);
   init_b(b,m,b_mod,len2);
-  print(b_mod,len2);
+  print_b(b_mod,len2);
   return -2;
 }
