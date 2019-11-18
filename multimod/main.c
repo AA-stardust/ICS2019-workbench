@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
   }
 
   a = strtoll(argv[optind], NULL, 10);
+  printf("%ld\n",a);
   b = strtoll(argv[optind + 1], NULL, 10);
   m = strtoll(argv[optind + 2], NULL, 10);
 
