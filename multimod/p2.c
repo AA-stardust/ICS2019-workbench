@@ -31,6 +31,7 @@ void print(int a[],int len){
   }
 }
 void print_b(int64_t b[],int len){
+  printf("\n");
   for(int i=0;i<len;i++){
     printf("%ld ",b[i]);
     if((i+1)%5==0)printf("\n");
