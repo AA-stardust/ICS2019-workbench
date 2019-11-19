@@ -47,7 +47,7 @@ int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   init_b(b,m,b_mod,len2);
   assert(len1==len2);
   for(int i=0;i<len1;i++){
-    int64_t temp=a[i]*b[i];
+    int64_t temp=a_bi[i]*b_mod[i];
     result=add_mod(result,temp,m);
   }
   return result;
