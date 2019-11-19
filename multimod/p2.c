@@ -1,5 +1,6 @@
 #include "multimod.h"
 #include<stdio.h>
+#include<assert.h>
 extern int64_t add_mod(int64_t a,int64_t b,int64_t m);
 void init(int64_t a,int b[],int len){
   int i=0;
