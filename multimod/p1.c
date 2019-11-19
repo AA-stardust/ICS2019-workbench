@@ -35,7 +35,6 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
       assert(0);
     }
     result=add_mod(result,a1,m);
-    printf("i:%d result:%ld\n",i,result);
   }
   printf("process 2\n");
   return result;
