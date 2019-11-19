@@ -21,22 +21,19 @@ int64_t add_mod(int64_t a,int64_t b,int64_t m){
 }
 
 int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
-  int64_t a1=a>b? a:b;
-  int64_t b1=a<b? a:b;
-  a1=a1%m;
-  b1=b1%m;
-  if(!mul_exeed(a1,b1)){
-    printf("process 1\n");
-    return (a1*b1)%m;
-  }
+  int a_bi[63];
   int64_t result=0;
-  for(int i=0;i<b1;i++){
-    if(result<add_mod(result,a1,m)&&i!=0){
-      printf("result: %ld %d\n",result,i);
-      assert(0);
-    }
-    result=add_mod(result,a1,m);
+  int len1=sizeof(a_bi)/sizeof(a_bi[0]);
+  init(a,a_bi,len1);
+  int64_t b_mod[63];
+  int len2=sizeof(b_mod)/sizeof(b_mod[0]);
+  init_b(b,m,b_mod,len2);
+  print_b(b_mod,len2);
+  assert(len1==len2);
+  for(int i=0;i<len1;i++){
+    int64_t temp=(int64_t)a_bi[i]*b_mod[i];
+    result=add_mod(result,temp,m);
+    printf("i:%d result:%ld\n",i,result);
   }
-  printf("process 2\n");
   return result;
 }
