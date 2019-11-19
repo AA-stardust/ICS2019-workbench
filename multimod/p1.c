@@ -19,7 +19,8 @@ int64_t add_mod(int64_t a,int64_t b,int64_t m){
   //printf("a:%ld b:%ld a1:%ld m:%ld result:%ld\n",a,b,a1,m,result);
   return (int64_t)result;
 }
-
+void init(int64_t a,int b[],int len);
+void init_b(int64_t b,int64_t m,int64_t b_m[],int len);
 int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   int a_bi[63];
   int64_t result=0;
@@ -28,7 +29,6 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   int64_t b_mod[63];
   int len2=sizeof(b_mod)/sizeof(b_mod[0]);
   init_b(b,m,b_mod,len2);
-  print_b(b_mod,len2);
   assert(len1==len2);
   for(int i=0;i<len1;i++){
     int64_t temp=(int64_t)a_bi[i]*b_mod[i];
