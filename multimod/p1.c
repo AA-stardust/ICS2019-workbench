@@ -33,7 +33,6 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m) {
   for(int i=0;i<len1;i++){
     int64_t temp=(int64_t)a_bi[i]*b_mod[i];
     result=add_mod(result,temp,m);
-    printf("i:%d result:%ld\n",i,result);
   }
   return result;
 }
