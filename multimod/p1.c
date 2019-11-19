@@ -13,6 +13,9 @@ _Bool mul_exeed(int64_t a,int64_t b){
 int64_t add_mod(int64_t a,int64_t b,int64_t m){
   volatile uint64_t a1=a+b;
   volatile uint64_t result=a1%(uint64_t)m;
+  if((int64_t)result<0){
+    printf("a:%lx b:%lx m:%lx result:%lx\n"a,b,m,result);
+  }
   return (int64_t)result;
 }
 
