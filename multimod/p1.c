@@ -16,7 +16,7 @@ int64_t add_mod(int64_t a,int64_t b,int64_t m){
   if((int64_t)result<0){
     printf("a:%lx b:%lx m:%lx result:%lx\n",a,b,m,result);
   }
-  printf("a:%ld b:%ld a1:%ld m:%ld result:%ld\n",a,b,a1,m,result);
+  //printf("a:%ld b:%ld a1:%ld m:%ld result:%ld\n",a,b,a1,m,result);
   return (int64_t)result;
 }
 
