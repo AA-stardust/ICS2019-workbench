@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <getopt.h>
 #include <stdlib.h>
+#include<time.h>
 #include "multimod.h"
 
 static struct option long_option[] = {
@@ -43,6 +44,6 @@ int main(int argc, char *argv[]) {
   start=clock();
   int64_t ret = func(a, b, m);
   finish=clock();
-  printf("time: %ld\n",(finsih-start)/CLOCK_PER_SEC);
+  printf("time: %ld\n",(finish-start)/CLOCK_PER_SEC);
   printf("%ld\n", ret);
 }
