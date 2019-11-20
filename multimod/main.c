@@ -44,6 +44,6 @@ int main(int argc, char *argv[]) {
   start=clock();
   int64_t ret = func(a, b, m);
   finish=clock();
-  printf("time: %ld\n",(finish-start)/CLOCKS_PER_SEC);
+  printf("time: %ld\n",finish-start);
   printf("%ld\n", ret);
 }
