@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<assert.h>
 extern int64_t add_mod(int64_t a,int64_t b,int64_t m);
+_Bool mul_exeed(int64_t a,int64_t b);
 void init(int64_t a,int b[],int len){
   int i=0;
   while(i<len){
@@ -41,6 +42,11 @@ int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   // TODO: implement
   int a_bi[63];
   int64_t result=0;
+  a=a%m;
+  b=b%m;
+  if(!exeed(a,b)){
+    return a*b%m;
+  }
   int len1=sizeof(a_bi)/sizeof(a_bi[0]);
   init(a,a_bi,len1);
   int64_t b_mod[63];
@@ -51,7 +57,6 @@ int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
   for(int i=0;i<len1;i++){
     int64_t temp=(int64_t)a_bi[i]*b_mod[i];
     result=add_mod(result,temp,m);
-    printf("i:%d result:%ld\n",i,result);
   }
   return result;
 }
