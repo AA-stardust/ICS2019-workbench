@@ -1,6 +1,7 @@
 #include "multimod.h"
 #include<stdio.h>
 #include<assert.h>
+#include<time.h>
 extern int64_t add_mod(int64_t a,int64_t b,int64_t m);
 _Bool mul_exeed(int64_t a,int64_t b);
 void init(int64_t a,int b[],int len){
@@ -58,4 +59,5 @@ int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
     result=add_mod(result,temp,m);
   }
   return result;
+
 }

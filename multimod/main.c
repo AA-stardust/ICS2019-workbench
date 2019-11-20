@@ -39,7 +39,10 @@ int main(int argc, char *argv[]) {
   a = strtoll(argv[optind], NULL, 10);
   b = strtoll(argv[optind + 1], NULL, 10);
   m = strtoll(argv[optind + 2], NULL, 10);
-
+  clock_t start,finish;
+  start=clock();
   int64_t ret = func(a, b, m);
+  finish=clock();
+  printf("time: %ld\n",(finsih-start)/CLOCK_PER_SEC);
   printf("%ld\n", ret);
 }
