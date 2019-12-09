@@ -1,6 +1,6 @@
 #include "asm.h"
 #include <string.h>
-
+#include<stdio.h>
 int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
   int64_t result=0;
