@@ -6,7 +6,7 @@ int64_t asm_add(int64_t a, int64_t b) {
   int64_t result=0;
   asm(
     "add %0,%1"
-    :"=a"(result)
+    :"=r"(result)
     :"r"(a),"r"(b)
     :"memory"
   );
