@@ -4,9 +4,9 @@
 int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
   asm(
-    "movl %0,%%rbx\n\t"
-    "movl %1,%%rax\n\t"
-    "addl %%rbx,%%rax\n\t"
+    "movlq %0,%%rbx\n\t"
+    "movlq %1,%%rax\n\t"
+    "addlq %%rbx,%%rax\n\t"
     :"=a"(b)
     :"r"(a),"r"(b)
     :"memory"
