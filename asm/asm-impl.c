@@ -9,7 +9,7 @@ int64_t asm_add(int64_t a, int64_t b) {
     "addq %%rbx,%%rax\n\t"
     :"=a"(b)
     :"r"(a),"r"(b)
-    :"memory"
+    :"al"
   );
   return b;
 }
