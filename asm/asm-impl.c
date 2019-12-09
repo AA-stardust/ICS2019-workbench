@@ -3,14 +3,13 @@
 #include<stdio.h>
 int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
-  int64_t result=0;
   asm(
     "add %0,%1"
-    :"=r"(result)
+    :"=r"(b)
     :"r"(a),"r"(b)
     :"memory"
   );
-  return result;
+  return b;
 }
 
 int asm_popcnt(uint64_t n) {
