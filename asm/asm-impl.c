@@ -5,9 +5,9 @@ int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
   int64_t result=0;
   asm(
-    "addl %1,%2"
+    "addl %0,%1"
     :"=a"(result)
-    :"1"(a),"2"(b)
+    :"0"(a),"1"(b)
     :"memory"
   );
   return result;
