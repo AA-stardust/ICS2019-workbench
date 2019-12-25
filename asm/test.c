@@ -1,5 +1,5 @@
 #include<stdio.h>
-int main(){
+int test(){
     int a=10, b=1;
     int c;
     asm (
