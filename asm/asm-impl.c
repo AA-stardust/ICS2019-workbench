@@ -7,7 +7,6 @@ int64_t asm_add(int64_t a, int64_t b) {
   asm volatile(
     "movq %0, %%rax\n\t"
     "addq %1, %%rax\n\t"
-    //:"=a"(c)
     :"r"(a),"r"(b)
     :"%rax"
   );
