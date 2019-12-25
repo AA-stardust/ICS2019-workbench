@@ -5,11 +5,9 @@ int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
   int c;
   asm(
-    "movq %0, %%rax\n\t"
-    "addq %1, %%rax\n\t"
+    "addq %0, %1\n\t"
     :"=a"(c)
     :"r"(a),"r"(b)
-    :"%rax"
   );
   return b;
 }
