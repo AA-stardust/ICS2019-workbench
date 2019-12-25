@@ -5,8 +5,10 @@ int64_t asm_add(int64_t a, int64_t b) {
   // TODO: implement
   //int64_t c;
   asm volatile(
-    "movq %0, %%rax\n\t"
-    "addq %1, %%rax\n\t"
+    "movq %1, %%rax\n\t"
+    "addq %2, %%rax\n\t"
+    "movq %%rax,%0\n\t"
+    :"=g"(b)
     :"r"(a),"r"(b)
     :"%rax"
   );
