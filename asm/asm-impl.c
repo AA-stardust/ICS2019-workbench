@@ -8,7 +8,7 @@ int64_t asm_add(int64_t a, int64_t b) {
     "addq %1, %%rax\n\t"
     :"=a"(b)
     :"r"(a),"r"(b)
-    :"%%eax"
+    :"%rax"
   );
   return b;
 }
