@@ -35,7 +35,7 @@ int asm_popcnt(uint64_t n) {
     "andl $0x1,%%edx\n\t"
     "addl %%edx,%%eax\n\t"
     "cmpl $40,%%ecx\n\t"
-    "jne <asm_popcnt+8>\n\t"
+    "jne asm_popcnt+0x8\n\t"
     "movq %%rax,%0\n\t"
     :"=g"(n)
   );
