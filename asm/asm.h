@@ -6,8 +6,8 @@ typedef uintptr_t asm_jmp_buf[0];
 
 int64_t asm_add(int64_t a, int64_t b);
 int64_t asm_test(int64_t a,int64_t b);
-int popcnt_test(int64_t n);
-int asm_popcnt(uint64_t x);
+int popcnt_test(int64_t x);
+int asm_popcnt(uint64_t n);
 void *asm_memcpy(void *dest, const void *src, size_t n);
 int asm_setjmp(asm_jmp_buf env);
 void asm_longjmp(asm_jmp_buf env, int val);
