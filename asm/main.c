@@ -17,8 +17,8 @@ int main() {
   assert(asm_popcnt(0xffffffffffffffffull) == 64);
    
   // TODO: add memcpy tests here!
-  char a[20];
-  char b[]="ljk jia you,you hen hao";
+  volatile char a[20];
+  volatile char b[]="ljk jia you,you hen hao";
   memcpy(a,b,10);
   a[10]='\0';
   printf("%s\n",a);
