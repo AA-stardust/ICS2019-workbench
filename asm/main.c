@@ -15,8 +15,10 @@ int main() {
   int64_t temp2=asm_add(0xffffffffffff,0xfabcdfffffff);
   assert(temp2==temp1);
   assert(asm_popcnt(0xffffffffffffffffull) == 64);
-
+   
   // TODO: add memcpy tests here!
+  int a[10];
+  memcpy(a,10,10);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
 
   // setjmp test starts here
