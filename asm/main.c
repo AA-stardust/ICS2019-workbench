@@ -10,6 +10,7 @@ static void setjmp_test1();
 int main() {
   // TODO: add more tests here!
   assert(asm_add(1, 2) == 3);
+  assert(asm_add(0x12+0x23)==0x35);
   assert(asm_popcnt(0xffffffffffffffffull) == 64);
 
   // TODO: add memcpy tests here!
