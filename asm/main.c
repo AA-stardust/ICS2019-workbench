@@ -11,7 +11,8 @@ int main() {
   // TODO: add more tests here!
   assert(asm_add(1, 2) == 3);
   assert(asm_add(0x12,0x23)==0x35);
-  assert(asm_add(0xffffffffffff,0xfabcdfffffff)==asm_test(0xffffffffffff,0xfabcdfffffff))
+  int64_t temp1=asm_test(0xffffffffffff,0xfabcdfffffff);
+  assert(asm_add(0xffffffffffff,0xfabcdfffffff)==temp1)
   assert(asm_popcnt(0xffffffffffffffffull) == 64);
 
   // TODO: add memcpy tests here!
