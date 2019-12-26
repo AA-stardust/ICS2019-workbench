@@ -74,7 +74,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
     "xchg %%ax,%%ax\n\t"
     "xor %%eax,%%eax\n\t"
     "retq\n\t"   
-  )
+  );
 }
 
 int asm_setjmp(asm_jmp_buf env) {
