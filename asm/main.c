@@ -20,6 +20,7 @@ int main() {
   char a[20];
   char b[]="ljk jia you,you hen hao";
   memcpy(a,b,10);
+  a[10]='\0';
   printf("%s\n",a);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
 
