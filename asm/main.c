@@ -18,7 +18,8 @@ int main() {
    
   // TODO: add memcpy tests here!
   int a[10];
-  memcpy(a,10,10);
+  int *p=10;
+  memcpy(a,p,10);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
 
   // setjmp test starts here
