@@ -11,3 +11,4 @@ int asm_popcnt(uint64_t n);
 void *asm_memcpy(void *dest, const void *src, size_t n);
 int asm_setjmp(asm_jmp_buf env);
 void asm_longjmp(asm_jmp_buf env, int val);
+void *memcpy_test(void *dest,const void *src,size_t n);

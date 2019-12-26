@@ -19,7 +19,7 @@ int main() {
   // TODO: add memcpy tests here!
   char a[20];
   const char b[]="ljk jia you,you hen hao";
-  memcpy(a,b,10);
+  memcpy_test(a,b,10);
   a[10]='\0';
   printf("%s\n",a);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);

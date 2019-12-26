@@ -41,7 +41,17 @@ int asm_popcnt(uint64_t n) {
   );
   return n;
 }
-
+void *memcpy_test(void *dest,const void *src,size_t n){
+  if(!(dest && src)) return 0;
+   void *out0=dest;
+   while(n){ 
+     *(char *)dest=*(char *)src;
+     dest++;
+     src++;
+     n--;
+   }
+   return out0;
+}
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   // TODO: implement
   return NULL;
