@@ -70,11 +70,15 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
     "cmp %%rcx,%%rdx\n\t"
     "jne memcpy_test+0x18\n\t"
     "movq %%rdi,%%rax\n\t"
+    "movq %%rax,%0\n\t"
     "retq\n\t"   
     "xchg %%ax,%%ax\n\t"
     "xor %%eax,%%eax\n\t"
+    "movq %%rax,%0\n\t"
     "retq\n\t"   
+    :"=g"(dest)
   );
+  return dest;
 }
 
 int asm_setjmp(asm_jmp_buf env) {
