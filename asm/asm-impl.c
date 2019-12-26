@@ -54,7 +54,27 @@ void *memcpy_test(void *dest,const void *src,size_t n){
 }
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   // TODO: implement
-  return NULL;
+  //return NULL;
+  asm(
+    "test %%rdi,%%rdi\n\t"
+    "je memcpy_test+0x30\n\t"
+    "test %%rsi,%%rsi\n\t"
+    "je memcpy_test+0x30\n\t"
+    "xor %%ecx,%%ecx\n\t"
+    "test %%rdx,%%rdx\n\t"
+    "je memcpy_test+0x2a\n\t"
+    "nopl 0x0(%%rax)\n\t"
+    "movzbl (%%rsi,%%rcx,1),%%r8d\n\t"
+    "movq %%r8b,(%%rdi,%%rcx,1)\n\t"
+    "addq $0x1,%%rcx\n\t"
+    "cmp %%rcx,%%rdx\n\t"
+    "jne memcpy_test+0x18\n\t"
+    "movq %%rdi,%%rax\n\t"
+    "retq\n\t"   
+    "xchg %%ax,%%ax\n\t"
+    "xor %%eax,%%eax\n\t"
+    "retq\n\t"   
+  )
 }
 
 int asm_setjmp(asm_jmp_buf env) {
