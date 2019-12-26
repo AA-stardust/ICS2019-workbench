@@ -18,7 +18,7 @@ int main() {
    
   // TODO: add memcpy tests here!
   volatile char a[20];
-  volatile char b[]="ljk jia you,you hen hao";
+  volatile const char b[]="ljk jia you,you hen hao";
   memcpy(a,b,10);
   a[10]='\0';
   printf("%s\n",a);
