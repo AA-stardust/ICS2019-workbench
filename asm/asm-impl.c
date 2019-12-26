@@ -65,7 +65,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
     "je memcpy_test+0x2a\n\t"
     "nopl 0x0(%%rax)\n\t"
     "movzbl (%%rsi,%%rcx,1),%%r8d\n\t"
-    "movq %%r8b,(%%rdi,%%rcx,1)\n\t"
+    "mov %%r8b,(%%rdi,%%rcx,1)\n\t"
     "addq $0x1,%%rcx\n\t"
     "cmp %%rcx,%%rdx\n\t"
     "jne memcpy_test+0x18\n\t"
