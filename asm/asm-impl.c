@@ -25,8 +25,21 @@ int popcnt_test(uint64_t x){
   return s;
 }
 int asm_popcnt(uint64_t n) {
-  
-  return 0;
+  asm volatile(
+    "xor %%ecx,%%ecx\n\t"//记录i
+    "xor %%eax,%%eax\n\t"//记录返回值
+    "nopl 0x0(%%rax)\n\t"
+    "movq %%rdi,%%rdx\n\t"
+    "shrq %%cl,%%rdx\n\t"
+    "addl $0x1,%%ecx\n\t"
+    "andl $0x1,%%edx\n\t"
+    "addl %%edx,%%eax\n\t"
+    "cmpl $40,%%ecx\n\t"
+    "jne <asm_popcnt+8>\n\t"
+    "movq %%rax,%0\n\t"
+    :"=g"(n)
+  );
+  return n;
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
