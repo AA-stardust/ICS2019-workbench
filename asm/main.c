@@ -17,10 +17,10 @@ int main() {
   assert(asm_popcnt(0xffffffffffffffffull) == 64);
    
   // TODO: add memcpy tests here!
-  int a[10];
-  int x=10;
-  int *p=&x;
-  memcpy(a,p,10);
+  char a[20];
+  char b[]="ljk jia you,you hen hao";
+  memcpy(a,b,10);
+  printf("%s\n",a);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
 
   // setjmp test starts here
