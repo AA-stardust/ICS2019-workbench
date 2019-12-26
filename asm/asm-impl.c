@@ -25,9 +25,7 @@ int popcnt_test(uint64_t x){
   return s;
 }
 int asm_popcnt(uint64_t n) {
-  asm volatile(
-
-  );
+  
   return 0;
 }
 
