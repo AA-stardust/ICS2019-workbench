@@ -17,7 +17,7 @@ int64_t asm_add(int64_t a, int64_t b) {
   );
   return b;
 }
-int popcnt_test(uint64_t n){
+int popcnt_test(uint64_t x){
   int s = 0;
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
