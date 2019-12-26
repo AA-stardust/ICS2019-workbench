@@ -18,7 +18,8 @@ int main() {
    
   // TODO: add memcpy tests here!
   int a[10];
-  int *p=10;
+  int x=10;
+  int *p=&x;
   memcpy(a,p,10);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
 
