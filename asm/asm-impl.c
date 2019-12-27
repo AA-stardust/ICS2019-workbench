@@ -91,7 +91,7 @@ int asm_setjmp(asm_jmp_buf env) {
     "movq %%pc,%0\n\t"
     :"=g"(rip0)
   );
-  printf("%lx\n",rip);
+  printf("%lx\n",rip0);
   return 0;
 }
 
