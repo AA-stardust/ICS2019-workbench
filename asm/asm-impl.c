@@ -86,15 +86,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
 int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
-  uint64_t temp=(uint64_t)env;
-  register uint64_t rip0 asm("rbx")=0;
-  register asm_jmp_buf buf asm("rcx")=temp;
-
+  //register uint64_t rip0 asm("rbx")=0;
   asm(
-    "movq 0x8(%%rsp),%0\n\t"
-    :"=r"(rip0)
+    "movq 0x8(%%rsp),%%rbx\n\t"
+    "movq %%rbx,(%0)\n\t"
+    :
+    :"r"(env)
+    :"rbx"
   );
-  printf("%lx\n",rip0);
   return 0;
 }
 
