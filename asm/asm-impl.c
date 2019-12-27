@@ -98,7 +98,7 @@ int asm_setjmp(asm_jmp_buf env) {
     "movq %%rbp,0x30(%0)\n\t"
     "movq %%rsp,0x38(%0)\n\t"
     :
-    :"m"(env)
+    :"r"(env)
     :"rax"
   );
   return 0;
