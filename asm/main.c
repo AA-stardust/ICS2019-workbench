@@ -21,9 +21,9 @@ int main() {
   const char b[]="ljk jia you,you hen hao";
   asm_memcpy(a,b,15);
   a[15]='\0';
-  printf("%s\n",a);
+  //printf("%s\n",a);
   assert(asm_memcpy(NULL, NULL, 0) == NULL);
-
+  strcmp(a,b);
   // setjmp test starts here
   setjmp_test0();
   setjmp_test1();
