@@ -94,7 +94,7 @@ int asm_setjmp(asm_jmp_buf env) {
     :"r"(env)
     :"rbx"
   );
-  printf("%x\n",env[0]);
+  printf("%lx\n",env[0]);
   return 0;
 }
 
