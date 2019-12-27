@@ -107,9 +107,18 @@ int asm_setjmp(asm_jmp_buf env) {
 void asm_longjmp(asm_jmp_buf env, int val) {
   // TODO: implement
   asm(
-    "movq (%0),%%rip"
+    "movq 0x8(%0),%%rbx\n\t"
+    "movq 0x10(%0),%%rcx\n\t"
+    "movq 0x18(%0),%%rdx\n\t"
+    "movq 0x20(%0),%%rsi\n\t"
+    "movq 0x28(%0),%%rdi\n\t"
+    "movq 0x30(%0),%%rbp\n\t"
+    "movq 0x38(%0),%%rsp\n\t"
+    "movq %1,%%rax\n\t"
+    "jmp (%0)\n\t"
     :
-    :"r"(env)
-    
+    :"a"(env),"r"(val)
+    :"rbx","rcx","rdx","rsi","rdi","rsp","rbp"
   );
+
 }
