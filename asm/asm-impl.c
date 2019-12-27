@@ -96,7 +96,9 @@ int asm_setjmp(asm_jmp_buf env) {
     "movq %%rsi,0x20(%0)\n\t"
     "movq %%rdi,0x28(%0)\n\t"
     "movq %%rbp,0x30(%0)\n\t"
-    "leaq 0x8(%%rsp),0x38(%0)\n\t"
+    "movq %%rsp,%%rax\n\t"
+    "addq $0x8,%%rax\n\t"
+    "movq %%rax,0x38(%0)\n\t"
     :
     :"r"(env)
     :"rax"
