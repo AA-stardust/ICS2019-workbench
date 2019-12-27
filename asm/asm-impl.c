@@ -88,7 +88,7 @@ int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
   uint64_t rip;
   asm(
-    "movq %%rip,%0\n\t"
+    "mov %%pc,%0\n\t"
     :"=g"(rip)
   );
   printf("%lx\n",rip);
