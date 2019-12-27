@@ -86,7 +86,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
 int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
-  register uint64_t rip0 asm("rbx")=0;
+  register uint64_t rip0 asm("rbx")=1;
   register asm_jmp_buf buf asm("rcx")=env;
 
   asm(
