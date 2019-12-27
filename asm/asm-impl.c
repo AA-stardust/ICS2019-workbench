@@ -107,7 +107,7 @@ int asm_setjmp(asm_jmp_buf env) {
 void asm_longjmp(asm_jmp_buf env, int val) {
   // TODO: implement
   asm(
-    "movq (%0) %%rip"
+    "movq (%0),%%rip"
     :
     :"r"(env)
     
