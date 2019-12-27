@@ -28,6 +28,7 @@ int main() {
   setjmp_test0();
   setjmp_test1();
   printf("PASS!\n");
+  return 0;
 }
 
 struct log_entry {
