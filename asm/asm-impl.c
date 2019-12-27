@@ -88,13 +88,20 @@ int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
   //register uint64_t rip0 asm("rbx")=0;
   asm(
-    "movq 0x8(%%rsp),%%rbx\n\t"
-    "movq %%rbx,(%0)\n\t"
+    "movq 0x8(%%rsp),%%rax\n\t"
+    "movq %%rax,(%0)\n\t"
+    "movq %%rbx,0x8(%0)\n\t"
+    "movq %%rcx,0x10(%0)\n\t"
+    "movq %%rdx,0x18(%0)\n\t"
+    "movq %%rsi,0x20(%0)\n\t"
+    "movq %%rdi,0x28(%0)\n\t"
+    "movq %%rbp,0x30(%0)\n\t"
+    "movq %%rsp,0x38(%0)\n\t"
+    
     :
     :"r"(env)
-    :"rbx"
+    :"rax"
   );
-  printf("%lx\n",env[0]);
   return 0;
 }
 
