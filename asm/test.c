@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<setjmp.h>
 jmp_buf buf;
-int main(){
+int test(){
     /*int a=10, b=1;
     int c;
     asm (
