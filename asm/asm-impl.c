@@ -88,7 +88,7 @@ int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
   //register uint64_t rip0 asm("rbx")=0;
   asm(
-    "movq 0x8(%%rsp),%%rax\n\t"
+    "movq (%%rsp),%%rax\n\t"
     "movq %%rax,(%0)\n\t"
     "movq %%rbx,0x8(%0)\n\t"
     "movq %%rcx,0x10(%0)\n\t"
