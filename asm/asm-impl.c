@@ -86,6 +86,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
 int asm_setjmp(asm_jmp_buf env) {
   // TODO: implement
+  uint64_t rip;
+  asm(
+    "movq %%rip,%0\n\t"
+    :"=g"(rip)
+    :
+    :"rip"
+  )
+  printf("%lx\n",rip);
   return 0;
 }
 
