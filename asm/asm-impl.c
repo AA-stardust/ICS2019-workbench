@@ -92,7 +92,7 @@ int asm_setjmp(asm_jmp_buf env) {
     :"=g"(rip)
     :
     :"rip"
-  )
+  );
   printf("%lx\n",rip);
   return 0;
 }
