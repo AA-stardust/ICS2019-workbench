@@ -38,6 +38,8 @@ int asm_popcnt(uint64_t n) {
     "jne asm_popcnt+0x7\n\t"
     "movq %%rax,%0\n\t"
     :"=g"(n)
+    :
+    :"ecx","eax","rdi","rdx"
   );
   return n;
 }
