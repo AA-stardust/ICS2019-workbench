@@ -27,6 +27,7 @@ int main() {
   // setjmp test starts here
   setjmp_test0();
   setjmp_test1();
+  printf("PASS!\n");
 }
 
 struct log_entry {
@@ -60,32 +61,39 @@ static void setjmp_test2();
 static void setjmp_test1() {
   int r = 0;
   setjmp_log("A1", r);
+  printf("A1\n");
   if ((r = asm_setjmp(bufferA)) == 0) {
     setjmp_test2();
   }
   setjmp_log("A2", r);
+  printf("A2\n");
   if ((r = asm_setjmp(bufferA)) == 0) {
     asm_longjmp(bufferB, 20001);
   }
   setjmp_log("A3", r);
+  printf("A3\n");
   if ((r = asm_setjmp(bufferA)) == 0) {
     asm_longjmp(bufferB, 20002);
   }
   setjmp_log("A4", r);
+  printf("A4\n");
   assert(head->str == NULL);
 }
 
 static void setjmp_test2() {
   int r = 0;
   setjmp_log("B1", r);
+  printf("B1\n");
   if ((r = asm_setjmp(bufferB)) == 0) {
     asm_longjmp(bufferA, 10001);
   }
   setjmp_log("B2", r);
+  printf("B2\n");
   if ((r = asm_setjmp(bufferB)) == 0) {
     asm_longjmp(bufferA, 10002);
   }
   setjmp_log("B3", r);
+  printf("B3\n");
   if ((r = asm_setjmp(bufferB)) == 0) {
     asm_longjmp(bufferA, 10003);
   }
@@ -102,6 +110,8 @@ static void setjmp_test0() {
   if ((r = asm_setjmp(buf)) == 0) {
     setjmp_log("A", r);
     setjmp_test_simple();
+    printf("A\n");
   }
   setjmp_log("B", r);
+  printf("B\n");
 }
