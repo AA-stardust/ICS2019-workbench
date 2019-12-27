@@ -115,7 +115,7 @@ void asm_longjmp(asm_jmp_buf env, int val) {
     "leaq 0x30(%0),%%rbp\n\t"
     "movq (%%rbp),%%rbp\n\t"
     "movq 0x38(%0),%%rsp\n\t"
-    "mov %1,%%rax\n\t"
+    "movl %1,%%eax\n\t"
     "jmp *(%0)\n\t"
     :
     :"a"(env),"r"(val)
