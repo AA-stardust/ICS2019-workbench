@@ -90,7 +90,7 @@ int asm_setjmp(asm_jmp_buf env) {
   asm(
     "movq 0x8(%%rsp),%%rdx\n\t"
     "movq %%rdx,%0\n\t"
-    :"=g"(rip0)
+    :"=r"(rip0)
     :
     :"rdx"
   );
