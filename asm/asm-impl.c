@@ -112,11 +112,11 @@ void asm_longjmp(asm_jmp_buf env, int val) {
     "movq 0x18(%0),%%rdx\n\t"
     "movq 0x20(%0),%%rsi\n\t"
     "movq 0x28(%0),%%rdi\n\t"
-    "leaq 0x30(%0),%%rbp\n\t"
-    "movq (%%rbp),%%rbp\n\t"
+    "movq 0x30(%0),%%rbp\n\t"
     "movq 0x38(%0),%%rsp\n\t"
+    "movq %0,%%rdi\n\t"
     "movl %1,%%eax\n\t"
-    "jmp *(%0)\n\t"
+    "jmp *(%rdi)\n\t"
     :
     :"a"(env),"r"(val)
     :"rbx","rcx","rdx","rsi","rdi","rsp","rbp"
