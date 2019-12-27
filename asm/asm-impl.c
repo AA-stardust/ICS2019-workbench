@@ -90,8 +90,6 @@ int asm_setjmp(asm_jmp_buf env) {
   asm(
     "movq %%rip,%0\n\t"
     :"=g"(rip)
-    :
-    :"rip"
   );
   printf("%lx\n",rip);
   return 0;
