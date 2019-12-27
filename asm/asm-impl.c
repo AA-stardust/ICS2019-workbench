@@ -77,7 +77,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
     "retq\n\t"   
     :"=g"(dest)
     :
-    :"rdi","rsi","ecx","r8b","rax"
+    :"rdi","rsi","ecx","rax"
   );
   return dest;
 }
