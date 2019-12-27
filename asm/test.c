@@ -20,4 +20,5 @@ int test(){
         longjmp(buf,1);
     }
     printf("out\n");
+    return 0;
 }
