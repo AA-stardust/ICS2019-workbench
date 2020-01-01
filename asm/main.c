@@ -110,8 +110,8 @@ static void setjmp_test0() {
   int r;
   if ((r = asm_setjmp(buf)) == 0) {
     setjmp_log("A", r);
-    setjmp_test_simple();
     printf("A\n");
+    setjmp_test_simple();
   }
   setjmp_log("B", r);
   printf("B\n");
