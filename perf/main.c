@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <time.h>
 #include <stdint.h>
-
+#include<unistd.h>
 #define DECL(fn) void fn();
 
 PROGRAMS(DECL)
@@ -13,12 +13,32 @@ PROGRAMS(DECL)
 static void run(void (*func)(), int rounds);
 static uint64_t gettime();
 static void (*lookup(const char *fn))();
-
+extern char* optarg;
 int main(int argc, char **argv) {
   // TODO: parse arguments: set @func and @rounds
   void (*func)() = lookup("dummy");
   int rounds = 10;
-
+  int res;
+  while((res=getopt(argc,argv,"r:")!=-1)){
+    switch(res){
+      case 'r':
+        if(optarg==NULL){
+          printf("Please input rounds\n");
+          assert(0);
+        }
+        rounds=atoi(optarg);
+        if(rounds<=0){
+          printf("rounds have to be positive\n");
+          assert(0);
+        }
+        break;
+      default:
+        printf("invalid input\n");
+        assert(0);
+    }
+  }
+  printf("%d\n",rounds);
+  void (*func)()=lookup(argv[argc-1]);
   run(func, rounds);
 }
 
