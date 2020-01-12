@@ -60,6 +60,51 @@ void renew(int i,uint32_t block_offset,uint32_t wmask,uint32_t data){
   Cache[i].data[block_offset]=new_data&0xff;
 }
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
+  uint32_t paddr;
+  addr=addr&0x1ffffff;
+  uint32_t block_offset=addr&0x3c;
+  uint32_t group_number=(addr>>6)&0x3f;
+  uint32_t tag=(addr>>12)&0x1fff;
+  uint32_t blocks_number=(addr>>6)&0x7ffff;
+  cycle_increase(1);
+  uint32_t start=group_number+4;
+  int i=0;
+  int j=0;
+  int flag;
+  for(i=start;i<start+4;i++){
+    if(Cache[i].tag==tag&&Cache[i].valid_bit==1){
+      hit_number++;
+      break;
+    }
+  }
+  if(i<start+4){
+    renew(i,block_offset,wmask,data);
+    Cache[i].dirty_bit=1;
+  }
+  else{
+    for(j=start;j<start+4;j++){
+      if(Cache[j].valid_bit==0)break;
+    }
+    if(j<start+4){
+      mem_read(blocks_number,Cache[j].data);
+      renew(j,block_offset,wmask,data);
+      Cache[j].tag=tag;
+      Cache[j].valid_bit=1;
+      Cache[j].dirty_bit=1;
+    }
+    else{
+      flag=rand()%4+start;
+      if(Cache[flag].dirty_bit){
+        paddr=(Cache[flag].tag<<6)|group_number;
+        mem_write(paddr,Cache[flag].data);
+      }
+      mem_read(blocks_number,Cache[flag].data);
+      renew(flag,block_offset,wmask,data);
+      Cache[flag].tag=tag;
+      Cache[flag].valid_bit=1;
+      Cache[flag].dirty_bit=1;
+    }
+  }
 }
 
 void init_cache(int total_size_width, int associativity_width) {
