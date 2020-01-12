@@ -137,6 +137,7 @@ void p1()
     multimod_p1(a, b ,m);
     //count++;
   }
+  fclose(fp);
   //printf("count: %ld\n",count);
 }
 
@@ -150,6 +151,7 @@ void p2()
     fscanf(fp, "%ld %ld %ld %ld %d", &a, &b, &m, &ans, &sign);
     multimod_p2(a, b ,m);
   }
+  fclose(fp);
 }
 
 void p3()
@@ -162,4 +164,5 @@ void p3()
     fscanf(fp, "%ld %ld %ld %ld %d", &a, &b, &m, &ans, &sign);
     multimod_p3(a, b ,m);
   }
+  fclose(fp);
 }
