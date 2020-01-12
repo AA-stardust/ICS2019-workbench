@@ -17,7 +17,7 @@ extern char* optarg;
 int main(int argc, char **argv) {
   // TODO: parse arguments: set @func and @rounds
   //void (*func)() = lookup("dummy");
-  int rounds = 10;
+  int rounds = 1;
   int res;
   while((res=getopt(argc,argv,"r:")!=-1)){
     switch(res){
