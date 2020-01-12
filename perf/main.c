@@ -14,6 +14,7 @@ static void run(void (*func)(), int rounds);
 static uint64_t gettime();
 static void (*lookup(const char *fn))();
 extern char* optarg;
+extern int optind;
 int main(int argc, char **argv) {
   // TODO: parse arguments: set @func and @rounds
   //void (*func)() = lookup("dummy");
@@ -32,6 +33,9 @@ int main(int argc, char **argv) {
           assert(0);
         }
         break;
+      case 1:{
+        printf("%s\n",argv[optind]);
+      }
       default:
         printf("invalid input\n");
         assert(0);
