@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
         assert(0);
     }
   }
-  printf("res:%d\n",rounds);
+  printf("rounds:%d\n",rounds);
   void (*func)()=lookup(argv[argc-1]);
   run(func, rounds);
 }
