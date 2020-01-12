@@ -83,41 +83,60 @@ int64_t multimod_p1(int64_t a, int64_t b, int64_t m)
 	}
 	return 0;
 }
+int64_t add_mod(int64_t a,int64_t b,int64_t m){
+  uint64_t a1=a+b;
+  uint64_t result=a1%(uint64_t)m;
+  if((int64_t)result<0){
+    printf("a:%lx b:%lx m:%lx result:%lx\n",a,b,m,result);
+  }
+  //printf("a:%ld b:%ld a1:%ld m:%ld result:%ld\n",a,b,a1,m,result);
+  return (int64_t)result;
+}
+_Bool mul_exeed(int64_t a,int64_t b);
+void init(int64_t a,int b[],int len){
+  int i=0;
+  while(i<len){
+    b[i]=a%2;
+    a/=2;
+    i++;
+  }
+}
+void init_b(int64_t b,int64_t m,int64_t b_m[],int len){
+  int i=0;
+  int64_t result=b;
+  while(i<len){
+    if(i==0){
+      b_m[i]=result%m;
+      result%=m;
+      i++;
+      continue;
+    }
+    result=add_mod(result,result,m);
+    b_m[i]=result;
+    i++;
+  }
+}
+int64_t multimod_p2(int64_t a, int64_t b, int64_t m) {
+  // TODO: implement
+  int a_bi[63];
+  int64_t result=0;
+  a=a%m;
+  b=b%m;
+  if(!mul_exeed(a,b)){
+    return a*b%m;
+  }
+  int len1=sizeof(a_bi)/sizeof(a_bi[0]);
+  init(a,a_bi,len1);
+  int64_t b_mod[63];
+  int len2=sizeof(b_mod)/sizeof(b_mod[0]);
+  init_b(b,m,b_mod,len2);
+  assert(len1==len2);
+  for(int i=0;i<len1;i++){
+    int64_t temp=(int64_t)a_bi[i]*b_mod[i];
+    result=add_mod(result,temp,m);
+  }
+  return result;
 
-int64_t multimod_p2(int64_t a, int64_t b, int64_t m)
-{
-	a = a % m;
-	b = b % m;
-	int64_t temp = a * b;
-	if (temp / a == b)
-	{
-		return temp % m;
-	}
-	else
-	{
-		int64_t a1 = a / 10;
-                int64_t a2 = a % 10;
-                int64_t b1 = b / 10;
-                int64_t b2 = b % 10;
-                int64_t ans1 = multimod_p2(a1, b1, m);
-                int64_t ans2 = multimod_p2(a1, b2, m);
-                int64_t ans3 = multimod_p2(a2, b1, m);
-                int64_t ans4 = multimod_p2(a2, b2, m);
-                if (ans1 > limit1)
-                {
-                        ans1 = multimod_p2(100, ans1, m);
-                }
-                if (ans2 > limit2)
-                {
-                        ans1 = multimod_p2(10, ans2, m);
-                }
-                if (ans3 > limit2)
-                {
-                        ans1 = multimod_p2(10, ans3, m);
-                }
-		return plus(100 * ans1, 10 *ans2, 10 * ans3, ans4, m);
-	}
-	return 0;
 }
 
 int64_t multimod_p3(int64_t a, int64_t b, int64_t m) {
