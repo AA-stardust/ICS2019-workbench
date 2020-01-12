@@ -38,12 +38,12 @@ int main(int argc, char **argv) {
         break;
       }
       default:
-        printf("%d\n",res);
+        printf("res: %d\n",res);
         printf("invalid input\n");
         assert(0);
     }
   }
-  printf("%d\n",rounds);
+  printf("res:%d\n",rounds);
   void (*func)()=lookup(argv[argc-1]);
   run(func, rounds);
 }
