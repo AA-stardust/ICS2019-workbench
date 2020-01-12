@@ -22,10 +22,10 @@ uint32_t cache_read(uintptr_t addr) {
   uint32_t paddr;
   cycle_increase(1);
   addr&=0x1ffffff;
-  uint32_t block_offset=addr&0x3c;
-  uint32_t group_number=(addr>>6)&0x3f;
-  uint32_t tag=(addr>>12)&0x1fff;
-  uint32_t blocks_number=(addr>>6)&0x7ffff;
+  uint32_t block_offset=addr&0x3C;
+  uint32_t group_number=(addr>>6)&0x3F;
+  uint32_t tag=(addr>>12)&0x1FFF;
+  uint32_t blocks_number=(addr>>6)&0x7FFFF;
   uint32_t start=group_number*4;
   int i=0;
   int j=0;
@@ -70,18 +70,18 @@ void renew(int i,uint32_t block_offset,uint32_t wmask,uint32_t data){
   uint32_t new_data;
   uint32_t old_data=Cache[i].data[block_offset]+(Cache[i].data[block_offset+1]<<8)+(Cache[i].data[block_offset+2]<<16)+(Cache[i].data[block_offset+3]<<24);
   new_data=(old_data&(~wmask))|(data&wmask);
-  Cache[i].data[block_offset+3]=(new_data>>24)&0xff;
-  Cache[i].data[block_offset+2]=(new_data>>16)&0xff;
-  Cache[i].data[block_offset+1]=(new_data>>8)&0xff;
-  Cache[i].data[block_offset]=new_data&0xff;
+  Cache[i].data[block_offset+3]=(new_data>>24)&0xFF;
+  Cache[i].data[block_offset+2]=(new_data>>16)&0xFF;
+  Cache[i].data[block_offset+1]=(new_data>>8)&0xFF;
+  Cache[i].data[block_offset]=new_data&0xFF;
 }
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t paddr;
   addr=addr&0x1ffffff;
-  uint32_t block_offset=addr&0x3c;
-  uint32_t group_number=(addr>>6)&0x3f;
-  uint32_t tag=(addr>>12)&0x1fff;
-  uint32_t blocks_number=(addr>>6)&0x7ffff;
+  uint32_t block_offset=addr&0x3C;
+  uint32_t group_number=(addr>>6)&0x3F;
+  uint32_t tag=(addr>>12)&0x1FFF;
+  uint32_t blocks_number=(addr>>6)&0x7FFFF;
   cycle_increase(1);
   uint32_t start=group_number+4;
   int i=0;
