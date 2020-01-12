@@ -44,13 +44,21 @@ uint32_t cache_read(uintptr_t addr) {
   else{
     for(j=start;j<start+4;j++){
       if(Cache[j].valid_bit==0){
-
+        ret_data=Cache[i].data[block_offset]+(Cache[i].data[block_offset+1]<<8)+(Cache[i].data[block_offset+2]<<16)+(Cache[i].data[block_offset+3]<<24);
       }
     }
   }
   return ret_data;
 }
-
+void renew(int i,uint32_t block_offset,uint32_t wmask,uint32_t data){
+  uint32_t new_data;
+  uint32_t old_data=Cache[i].data[block_offset]+(Cache[i].data[block_offset+1]<<8)+(Cache[i].data[block_offset+2]<<16)+(Cache[i].data[block_offset+3]<<24);
+  new_data=(old_data&(~wmask))|(data&wmask);
+  Cache[i].data[block_offset+3]=(new_data>>24)&0xff;
+  Cache[i].data[block_offset+2]=(new_data>>16)&0xff;
+  Cache[i].data[block_offset+1]=(new_data>>8)&0xff;
+  Cache[i].data[block_offset]=new_data&0xff;
+}
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
 }
 
