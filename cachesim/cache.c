@@ -4,7 +4,6 @@
 void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
 static uint64_t hit_number=0;
-static uint64_t cycle=0;
 static uint64_t cycle_cnt = 0;
 
 void cycle_increase(int n) { cycle_cnt += n; }
@@ -108,7 +107,18 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
 }
 
 void init_cache(int total_size_width, int associativity_width) {
+  int i;
+  int line=exp2(total_size_width-6);
+  Cache=malloc(line*sizeof(cache_line));
+  for(i=0;i<line;i++){
+    Cache[i].valid_bit=0;
+    Cache[i].dirty_bit=0;
+  }
 }
 
 void display_statistic(void) {
+  printf("cycle time: %ld\n",cycle_cnt);
+  printf("hit: %ld\n",hit_number);
+  double hit_partial=(double)hit_number/cycle_cnt;
+  printf("hit rate: %lf\n",hit_partial);
 }
