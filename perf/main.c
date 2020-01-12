@@ -19,8 +19,8 @@ int main(int argc, char **argv) {
   // TODO: parse arguments: set @func and @rounds
   //void (*func)() = lookup("dummy");
   int rounds = 1;
-  int res;
-  while((res=getopt(argc,argv,"r:")!=-1)){
+  int res=0;
+  while(((res=getopt(argc,argv,"r:"))!=-1)){
     switch(res){
       case 'r':
         if(optarg==NULL){
