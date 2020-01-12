@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdint.h>
 #include<unistd.h>
+#include<sys/time.h>
 #define DECL(fn) void fn();
 
 PROGRAMS(DECL)
@@ -15,6 +16,7 @@ static uint64_t gettime();
 static void (*lookup(const char *fn))();
 extern char* optarg;
 extern int optind;
+char func_name[30];
 int main(int argc, char **argv) {
   // TODO: parse arguments: set @func and @rounds
   //void (*func)() = lookup("dummy");
@@ -45,11 +47,16 @@ int main(int argc, char **argv) {
   }
   printf("rounds:%d\n",rounds);
   void (*func)()=lookup(argv[argc-1]);
+  strcpy(func_name,argv[argc-1]);
   run(func, rounds);
 }
 
 static uint64_t gettime() {
   // TODO: implement me!
+  struct timeval time_s;
+  gettimeofday(&time_s,NULL);
+  double cur_time=(double)time_s.tv_sec+(double)time_s.tv_usec/1000000;
+  return cur_time;
   return time(NULL);
 }
 
@@ -71,19 +78,30 @@ static void (*lookup(const char *fn))() {
 }
 
 static void run(void (*func)(), int rounds) {
-  uint64_t *elapsed = malloc(sizeof(uint64_t) * rounds);
+  double *elapsed = malloc(sizeof(uint64_t) * rounds);
   if (!elapsed) {
     perror("elapsed");
     return;
   }
 
   for (int round = 0; round < rounds; round++) {
-    uint64_t st = gettime();
+    double st = gettime();
     func();
-    uint64_t ed = gettime();
+    double ed = gettime();
     elapsed[round] = ed - st;
   }
-
+  double mark_ave=0;
+  double mark_min=elapsed[0];
+  double mark_max=elapsed[0];
+  for(int round=0;round<rounds;round++){
+    mark_ave+=elapsed[round];
+    if(elapsed[round]<mark_min)mark_min=elapsed[round];
+    if(elapsed[round]>mark_max)mark_max=elapsed[round];
+  }
+  mark_ave/=rounds;
+    printf("Average time of %s is %lf\n",func_name,mark_ave);
+    printf("Minimum time of %s is %lf\n",func_name,mark_min);
+    printf("Maximun time of %s is %lf\n",func_name,mark_max);
   // TODO: display runtime statistics
 
   free(elapsed);
