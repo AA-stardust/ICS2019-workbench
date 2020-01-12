@@ -53,7 +53,7 @@ uint32_t cache_read(uintptr_t addr) {
       ret_data=Cache[j].data[block_offset]+(Cache[j].data[block_offset+1]<<8)+(Cache[j].data[block_offset+2]<<16)+(Cache[j].data[block_offset+3]<<24);
     }
     else{
-      flag=rand()%4;
+      flag=rand()%4+start;
       if(Cache[flag].dirty_bit==1){
         paddr=(Cache[flag].tag<<6)|group_number;
         mem_write(paddr,Cache[flag].data);
