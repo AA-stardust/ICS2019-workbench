@@ -138,5 +138,5 @@ void display_statistic(void) {
   printf("hit: %ld\n",hit_number);
   double hit_partial=(double)hit_number/cycle_cnt;
   printf("hit rate: %lf\n",hit_partial);
-  printf("wrong_time: %u\n",wrong_time);
+  printf("wrong_time: %u\n",wrong_time/2);
 }
