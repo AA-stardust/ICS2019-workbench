@@ -92,7 +92,10 @@ int64_t add_mod(int64_t a,int64_t b,int64_t m){
   //printf("a:%ld b:%ld a1:%ld m:%ld result:%ld\n",a,b,a1,m,result);
   return (int64_t)result;
 }
-_Bool mul_exeed(int64_t a,int64_t b);
+_Bool mul_exeed(int64_t a,int64_t b){
+  volatile int64_t c=a*b;
+  return !(b==0||a==c/b);
+}
 void init(int64_t a,int b[],int len){
   int i=0;
   while(i<len){
