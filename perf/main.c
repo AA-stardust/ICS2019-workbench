@@ -99,10 +99,15 @@ static void run(void (*func)(), int rounds) {
     if(elapsed[round]>mark_max)mark_max=elapsed[round];
   }
   mark_ave/=rounds;
-    printf("Average time of %s is %lf\n",func_name,mark_ave);
-    printf("Minimum time of %s is %lf\n",func_name,mark_min);
-    printf("Maximun time of %s is %lf\n",func_name,mark_max);
+  printf("Average time of %s is %lf\n",func_name,mark_ave);
+  printf("Minimum time of %s is %lf\n",func_name,mark_min);
+  printf("Maximun time of %s is %lf\n",func_name,mark_max);
   // TODO: display runtime statistics
-
+  double var=0;
+  for(int round=0;round<rounds;round++){
+    var+=(elapsed[round]-mark_ave)*(elapsed[round]-mark_ave);
+  }
+  var/=rounds;
+  printf("Variance of %s is %lf\n",func_name,var);
   free(elapsed);
 }
