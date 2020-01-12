@@ -5,6 +5,6 @@
   _(simple_loop) \
   _(p1)\
   _(p2)\
-  _(p3)\
+  _(p3)
 
 #define LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
