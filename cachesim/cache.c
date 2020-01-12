@@ -19,7 +19,7 @@ cache_line*Cache;
 
 uint32_t cache_read(uintptr_t addr) {
   uint32_t ret_data=0;
-  //uint32_t pa;
+  uint32_t paddr;
   cycle_increase(1);
   addr&=0x1ffffff;
   uint32_t block_offset=addr&0x3c;
@@ -43,8 +43,25 @@ uint32_t cache_read(uintptr_t addr) {
   else{
     for(j=start;j<start+4;j++){
       if(Cache[j].valid_bit==0){
-        ret_data=Cache[i].data[block_offset]+(Cache[i].data[block_offset+1]<<8)+(Cache[i].data[block_offset+2]<<16)+(Cache[i].data[block_offset+3]<<24);
+        break;
       }
+    }
+    if(j<start+4){
+      mem_read(blocks_number,Cache[j].data);
+      Cache[j].tag=tag;
+      Cache[j].valid_bit=1;
+      ret_data=Cache[j].data[block_offset]+(Cache[j].data[block_offset+1]<<8)+(Cache[j].data[block_offset+2]<<16)+(Cache[j].data[block_offset+3]<<24);
+    }
+    else{
+      flag=rand()%4+start;
+      if(Cache[flag].dirty_bit==1){
+        paddr=(Cache[flag].tag<<6)|group_number;
+        mem_write(paddr,Cache[flag].data);
+      }
+      mem_read(blocks_number,Cache[flag].data);
+      Cache[flag].tag=tag;
+      Cache[flag].valid_bit=1;
+      ret_data=Cache[flag].data[block_offset]+(Cache[flag].data[block_offset+1]<<8)+(Cache[flag].data[block_offset+2]<<16)+(Cache[flag].data[block_offset+3]<<24);
     }
   }
   return ret_data;
