@@ -12,7 +12,7 @@
 PROGRAMS(DECL)
 
 static void run(void (*func)(), int rounds);
-static uint64_t gettime();
+static double gettime();
 static void (*lookup(const char *fn))();
 extern char* optarg;
 extern int optind;
