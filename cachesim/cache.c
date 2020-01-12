@@ -110,7 +110,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     }
     else{
       flag=rand()%4+start;
-      if(Cache[flag].dirty_bit){
+      if(Cache[flag].dirty_bit==1){
         paddr=(Cache[flag].tag<<6)|group_number;
         mem_write(paddr,Cache[flag].data);
       }
