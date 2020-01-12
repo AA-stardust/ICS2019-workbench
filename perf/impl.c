@@ -128,13 +128,16 @@ int64_t multimod_p3(int64_t a, int64_t b, int64_t m) {
 void p1()
 {
   FILE *fp = fopen("multimod.txt", "r");
-  int64_t a, b, m, ans;
+  int64_t a, b, m, ans,count;
   int sign;
+  count=0;
   while(!feof(fp))
   {
     fscanf(fp, "%ld %ld %ld %ld %d", &a, &b, &m, &ans, &sign);
     multimod_p1(a, b ,m);
+    count++;
   }
+  printf("count: %d\n",count);
 }
 
 void p2()
