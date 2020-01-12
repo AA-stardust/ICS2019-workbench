@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
   run(func, rounds);
 }
 
-static uint64_t gettime() {
+static double gettime() {
   // TODO: implement me!
   struct timeval time_s;
   gettimeofday(&time_s,NULL);
