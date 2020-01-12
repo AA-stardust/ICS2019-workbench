@@ -20,7 +20,7 @@ cache_line*Cache;
 
 uint32_t cache_read(uintptr_t addr) {
   uint32_t ret_data=0;
-  uint32_t pa;
+  //uint32_t pa;
   cycle_increase(1);
   addr&=0x1ffffff;
   uint32_t block_offset=addr&0x3c;
