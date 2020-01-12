@@ -14,7 +14,7 @@ typedef struct{
   uint8_t data[64];
 }cache_line;
 
-cache_line*Cache;
+cache_line *Cache;
 // TODO: implement the following functions
 
 uint32_t cache_read(uintptr_t addr) {
