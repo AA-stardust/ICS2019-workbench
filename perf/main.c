@@ -35,8 +35,10 @@ int main(int argc, char **argv) {
         break;
       case 1:{
         printf("%s\n",argv[optind]);
+        break;
       }
       default:
+        printf("%d\n",res);
         printf("invalid input\n");
         assert(0);
     }
