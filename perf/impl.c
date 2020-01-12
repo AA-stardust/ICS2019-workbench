@@ -137,7 +137,7 @@ void p1()
     multimod_p1(a, b ,m);
     count++;
   }
-  printf("count: %d\n",count);
+  printf("count: %ld\n",count);
 }
 
 void p2()
